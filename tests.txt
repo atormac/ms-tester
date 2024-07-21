@@ -1,3 +1,10 @@
+pwd
+echo abc 123
 ls
 ls | wc
-echo abc 123
+ls | wc -l
+echo "hello" | grep "hello"
+echo "world" | grep "hello"
+ls -la | grep "^d" | wc -l
+echo "hello" | cat | grep "hello"
+cd non_existent_directory
