@@ -18,7 +18,8 @@ OK=0
 KO=0
 
 function do_test {
-	echo -e "${1}"
+	#echo -e "${1}"
+	FAILED=0
 	INPUT="${1}\necho \$?\nexit"
 	BASH_OUT=$(echo -e "$INPUT" | bash 2>/dev/null 1>$TD/bash_out)
 	BASH_ERR=$(trap "" PIPE && echo -e "$INPUT" | bash 2>&1 > /dev/null | awk -F: '{print $NF}'> $TD/bash_error)
@@ -28,11 +29,18 @@ function do_test {
 
 	if ! diff --brief $TD/bash_out $TD/ms_out; then
 		((KO++))
+		((FAILED++))
 		echo "STDOUT KO: $INPUT"
 	fi
 	if ! diff --brief $TD/bash_error $TD/ms_error; then
 		((KO++))
+		((FAILED++))
 		echo "STDERR KO: $INPUT"
+	fi
+	if [ "$FAILED" -eq "1" ]; then
+		echo "ERROR: ${1}"
+	else
+		echo "OK: ${1}"
 	fi
 	((TOTAL++))
 }
@@ -43,4 +51,4 @@ do
 done < "tests.txt"
 
 OK="$((TOTAL-KO))"
-printf "OK: $OK, KO: $KO, TOTAL: $TOTAL"
+printf " ----SUMMARY---- \nOK: $OK, KO: $KO, TOTAL: $TOTAL"
