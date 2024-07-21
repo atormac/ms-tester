@@ -10,8 +10,8 @@ PROMPT_NOENV=$(echo -e "\nexit\n" | env -i $MS | head -n 1 | sed "s/\x1B\[[0-9;]
 BASH_PROMPT=$(echo -e "\nexit\n" | $MS | head -n 1 | sed "s/\x1B\[[0-9;]\{1,\}[A-Za-z]//g" )
 
 #INPUT="ls\necho \$?\nexit"
-mkdir ./tmp
-rm ./tmp/*
+mkdir ./tmp 2> /dev/null
+rm ./tmp/* 2> /dev/null
 
 TOTAL=0
 OK=0
