@@ -1,0 +1,3 @@
+ls
+ls | wc
+echo abc 123
