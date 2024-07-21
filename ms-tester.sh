@@ -10,12 +10,12 @@ INPUT="lsasdasd\nexit"
 
 BASH_OUT=$(echo -e "$INPUT" | bash 2>./bash_error 1>./bash_out)
 BASH_EXIT=$?
-echo $BASH_OUT
 echo $BASH_EXIT
 
-MS_OUT=$(echo -e $INPUT | $MS 2>./ms_error | grep -vF "$PROMPT" | grep -vF "$PROMPT_NOENV" 1>./ms_out)
+MS_OUT=$(echo -e $INPUT | $MS 2>/dev/null | grep -vF "$PROMPT" | grep -vF "$PROMPT_NOENV" 1>./ms_out)
+MS_ERR=$(echo -e $INPUT | $MS 2>./ms_error)
 MS_EXIT=$?
-echo $MS_OUT
 echo $MS_EXIT
 
+diff ./bash_out ./ms_out
 #exec_test 'echo abc 123'
