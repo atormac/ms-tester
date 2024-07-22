@@ -13,6 +13,9 @@ cd tmp/
 ./not_exists_123
 not_existing_cmd
 /usr/bin/not_exists_bin | wc -l
+<<<<<
+< >
+<< < << < 
 
  
 cat -e < ./infiles/f1 | grep "Lorem" | cat
@@ -33,6 +36,7 @@ unset PWD
 ls -a > ./outfiles/outfile
 ls -a | grep ":" > ./outfiles/outfile | wc
 ls -a >> ./outfiles/outfile | ls >> ./outfiles/outfile
+cat < ./infiles/f1 >> ./outfiles/outfile | ls >> ./outfiles/outfile
 ls && cd tmp/
 cd abcdefg/ && ls && wc
 cd abcdefg/ || ls -a >> ./outfiles/outfile

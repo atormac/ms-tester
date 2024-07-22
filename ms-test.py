@@ -28,6 +28,7 @@ def run_bash(input_str):
         bash_stdout = stdout.decode().rstrip()
         bash_stderr = strip_prefix(stderr.decode(), "bash: line 1: ")
         bash_stderr = strip_prefix(bash_stderr, "bash: ")
+        bash_stderr = bash_stderr.partition('\n')[0]
     except Exception as e:
         print("Error occured: ", e)
     return bash_stdout, bash_stderr, bash_exitcode
@@ -47,6 +48,7 @@ def run_minishell(input_str):
         ms_exitcode = b.returncode
         ms_stdout = get_ms_output(stdout.decode())
         ms_stderr = strip_prefix(stderr.decode(), "minishell: ")
+        ms_stderr = ms_stderr.partition('\n')[0]
     except Exception as e:
         print("Error occured: ", e)
     return ms_stdout, ms_stderr, ms_exitcode
