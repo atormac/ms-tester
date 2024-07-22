@@ -1,10 +1,12 @@
 import subprocess
 import os
 import shutil
+import sys
 
 global ms_prompt
 ms_prompt = "empty"
 COUNTER = 0
+VALGRIND = 0
 OK = 0
 KO = 0
 
@@ -31,8 +33,16 @@ def run_bash(input_str):
 
 def run_minishell(input_str):
     try:
-        b = subprocess.Popen(["./minishell"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = b.communicate(input_str.encode(), timeout=5)
+        if (VALGRIND == 1):
+            cmd = ["valgrind", "--tool=memcheck", "--leak-check=yes",
+            "--trace-children=yes", "--trace-children-skip=/usr/bin/*,/bin/*",
+            "--track-fds=yes", "-q", "./minishell"]
+            timeout_seconds = 30
+        else:
+            cmd = ["./minishell"]
+            timeout_seconds = 5
+        b = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = b.communicate(input_str.encode(), timeout=timeout_seconds)
         ms_exitcode = b.returncode
         ms_stdout = get_ms_output(stdout.decode())
         ms_stderr = strip_prefix(stderr.decode(), "minishell: ")
@@ -51,8 +61,6 @@ def do_test(input_str):
     if (bash_stdout != ms_stdout):
         error = 1
         print("STDOUT:")
-        print("bash: " + bash_stdout)
-        print("ms: " + ms_stdout)
     if (bash_stderr != ms_stderr):
         error = 1
         print("STDERR:")
@@ -71,7 +79,11 @@ def do_test(input_str):
 
 def init_tester():
     global COUNTER
+    global VALGRIND
     shutil.copyfile("../minishell", "./minishell")
+    if (len(sys.argv) == 2 and sys.argv[1] == "valgrind"):
+        VALGRIND = 1
+        print("VALGRIND ENABLED")
 
 def get_prompt():
     stdout, stderr, ret = run_minishell("exit\n")
