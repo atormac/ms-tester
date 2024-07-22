@@ -1,6 +1,6 @@
 ## Minishell tester (42)
 
-Clone the repository into the root of your minishell repo
+Clone the repository into the root of your minishell repo\
 Run: 
 ```
 python3 ms-test.py
