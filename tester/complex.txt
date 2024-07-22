@@ -7,12 +7,12 @@ env | grep EMPTYKEY
 notfound_123
 echo $?
 echo $?
-unset PATH
-notfound_123
-echo $?
-echo $?
 cat | cat | cat | ls
 
 
 
+unset PATH
+notfound_123
+echo $?
+echo $?
 exit
