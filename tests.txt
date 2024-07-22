@@ -1,5 +1,7 @@
 pwd
 echo abc 123
+
+ 
 ls
 ls | wc
 ls | wc -l
@@ -8,3 +10,4 @@ echo "world" | grep "hello"
 ls -la | grep "^d" | wc -l
 echo "hello" | cat | grep "hello"
 cd non_existent_directory
+ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls
