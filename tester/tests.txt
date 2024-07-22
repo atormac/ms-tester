@@ -55,6 +55,5 @@ cat < ./infiles/f1 >> ../outfiles/outfile | ls >> ../outfiles/outfile
 cat < ./infiles/noaccess >> ../outfiles/outfile | ls >> ../outfiles/outfile
 cat < ./infiles/f1 | cat | sort | cat -e > ../outfiles/outfile
 ls && cd tmp/
-cd abcdefg/ && ls && wc
 cd abcdefg/ || ls -a >> ../outfiles/outfile
 cd abcdefg/ || (ls -la > ../outfiles/outfile)

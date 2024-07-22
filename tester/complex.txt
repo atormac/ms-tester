@@ -1,3 +1,10 @@
+export NEWKEYVAL=VALUE15682
+echo $?
+env | grep "NEWKEYVAL"
+export EMPTYKEY
+echo $?
+env | grep EMPTYKEY
+export | grep EMPTYKEY
 notfound_123
 echo $?
 echo $?
