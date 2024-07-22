@@ -12,12 +12,13 @@ cd non_existent_directory
 cd tmp/
 ./not_exists_123
 not_existing_cmd
+/usr/bin/not_exists_bin | wc -l
 
  
 cat -e < ./infiles/f1 | grep "Lorem" | cat
 "    "
 ls
-ls | wc -l
+/usr/bin/ls | wc -l
 ls -la | wc -w "-l" | cat -e
 ls -la | wc '-w' "-l" | cat -e
 echo "hello" | grep "hello"
@@ -31,3 +32,7 @@ unset HOME
 unset PWD
 ls -a > ./outfiles/outfile
 ls -a | grep ":" > ./outfiles/outfile | wc
+ls -a >> ./outfiles/outfile | ls >> ./outfiles/outfile
+ls && cd tmp/
+cd abcdefg/ && ls && wc
+cd abcdefg/ || ls -a >> ./outfiles/outfile
