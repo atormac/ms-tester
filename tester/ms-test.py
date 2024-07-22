@@ -28,6 +28,7 @@ def run_bash(input_str):
     try:
         b = subprocess.Popen(["bash"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = b.communicate(input_str.encode(), timeout=5)
+        b.stdin.close()
         bash_exitcode = b.returncode
         bash_stdout = stdout.decode().rstrip()
         bash_stderr = strip_prefix(stderr.decode(), "bash: line 1: ")
@@ -47,6 +48,7 @@ def run_minishell(input_str):
             timeout_seconds = 5
         b = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = b.communicate(input_str.encode(), timeout=timeout_seconds)
+        b.stdin.close()
         ms_exitcode = b.returncode
         ms_stdout = get_ms_output(stdout.decode())
         ms_stderr = strip_prefix(stderr.decode(), "minishell: ")
@@ -102,7 +104,7 @@ def do_test(input_str):
 def init_tester():
     global COUNTER
     global VALGRIND
-    shutil.copyfile("../minishell", "./minishell")
+    shutil.copyfile("../../minishell", "./minishell")
     os.chmod("./minishell", 0o0755)
     if not os.path.exists("./infiles/noaccess"):
         shutil.copyfile("./infiles/f1", "./infiles/noaccess")
