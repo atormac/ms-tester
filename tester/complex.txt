@@ -1,0 +1,8 @@
+notfound_123
+echo $?
+echo $?
+unset PATH
+notfound_123
+echo $?
+echo $?
+exit

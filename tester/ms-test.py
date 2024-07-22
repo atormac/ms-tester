@@ -38,6 +38,21 @@ def run_bash(input_str):
         print("Error occured: ", e)
     return bash_stdout, bash_stderr, bash_exitcode
 
+def run_bash_full(input_str):
+    try:
+        line_count = input_str.count('\n')
+        b = subprocess.Popen(["bash"], shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stdout, stderr = b.communicate(input_str.encode(), timeout=5)
+        bash_exitcode = b.returncode
+        bash_stdout = stdout.decode().rstrip()
+        bash_stderr = stderr.decode()
+        for x in range(line_count):
+            bash_stderr = bash_stderr.replace("bash: line " + str(x) + ": ", "")
+        bash_stderr = bash_stderr.rstrip()
+    except Exception as e:
+        print("Error occured: ", e)
+    return bash_stdout, bash_stderr, bash_exitcode
+
 def run_minishell(input_str):
     try:
         if (VALGRIND == 1):
@@ -118,6 +133,16 @@ def get_prompt():
     stdout, stderr, ret = run_minishell("exit\n")
     return stdout.split(':')[0] + ":"
 
+def run_tests_complex():
+    try:
+        with open('complex.txt', 'r') as file:
+            data = file.read()
+            bash_stdout, bash_stderr, bash_exitcode = run_bash_full(data)
+            print(bash_stdout)
+            print(bash_stderr)
+    except Exception as e:
+        print("Error occured: ", e)
+
 def run_tests():
     try:
         f = open('./tests.txt', 'r')
@@ -132,4 +157,5 @@ def run_tests():
 
 init_tester()
 ms_prompt = get_prompt()
-run_tests()
+run_tests_complex()
+#run_tests()
