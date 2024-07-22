@@ -19,6 +19,7 @@ echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<'
 echo $NOTEXISTS
 echo hello > ../outfiles/outfile world
 echo hello > ../outfiles/outfile2 world > ../outfiles/outfile
+echo hello > ../outfiles/outfile2 world > ../outfiles/outfile1 abc123 > ../outfiles/outfile
 cd non_existent_directory
 cd tmp/
 ./not_exists_123
@@ -39,7 +40,7 @@ echo "hello" | grep "hello"
 echo "world" | grep "hello"
 ls -la | grep "^d" | wc -l
 echo "hello" | cat | grep "hello"
-ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls
+ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls
 export VARIABLE=value123
 export 8VARIABLE=value
 unset HOME
