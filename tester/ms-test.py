@@ -104,6 +104,9 @@ def init_tester():
     global VALGRIND
     shutil.copyfile("../minishell", "./minishell")
     os.chmod("./minishell", 0o0755)
+    if not os.path.exists("./infiles/noaccess"):
+        shutil.copyfile("./infiles/f1", "./infiles/noaccess")
+        os.chmod("./infiles/noaccess", 0o0000)
     if (len(sys.argv) == 2 and sys.argv[1] == "valgrind"):
         VALGRIND = 1
         print("VALGRIND ENABLED")

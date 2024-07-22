@@ -23,7 +23,6 @@ cat -e < ./infiles/f1 | grep "Lorem" | cat
 ls
 /usr/bin/ls | wc -l
 ls -la | wc -w "-l" | cat -e
-ls -la | wc '-w' "-l" | cat -e
 echo "hello" | grep "hello"
 echo "world" | grep "hello"
 ls -la | grep "^d" | wc -l
@@ -33,10 +32,11 @@ export VARIABLE=value123
 export 8VARIABLE=value
 unset HOME
 unset PWD
-ls -a > ./outfiles/outfile
-ls -a | grep ":" > ./outfiles/outfile | wc
-ls -a >> ./outfiles/outfile | ls >> ./outfiles/outfile
-cat < ./infiles/f1 >> ./outfiles/outfile | ls >> ./outfiles/outfile
+ls -a > ../outfiles/outfile
+ls -la | grep ":" > ../outfiles/outfile | wc
+ls -la >> ../outfiles/outfile | ls >> ../outfiles/outfile
+cat < ./infiles/f1 >> ../outfiles/outfile | ls >> ../outfiles/outfile
+cat < ./infiles/noaccess >> ../outfiles/outfile | ls >> ../outfiles/outfile
 ls && cd tmp/
 cd abcdefg/ && ls && wc
-cd abcdefg/ || ls -a >> ./outfiles/outfile
+cd abcdefg/ || ls -a >> ../outfiles/outfile
