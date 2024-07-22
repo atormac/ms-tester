@@ -1,13 +1,26 @@
 pwd
 echo abc 123
+echo -n
+echo $HOME
+echo $"HOME"
+echo '$HOME'
 
  
+"    "
 ls
-ls | wc
 ls | wc -l
+ls -la | wc -w "-l" | cat -e
+ls -la | wc '-w' "-l" | cat -e
+ls "-l -a"
 echo "hello" | grep "hello"
 echo "world" | grep "hello"
 ls -la | grep "^d" | wc -l
 echo "hello" | cat | grep "hello"
 cd non_existent_directory
-ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls
+cd tmp/
+ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls
+export VARIABLE=value123
+export 8VARIABLE=value
+unset HOME
+unset PWD
+ls -la > outfile1
