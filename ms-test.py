@@ -2,6 +2,7 @@ import subprocess
 import os
 import shutil
 import sys
+import filecmp
 
 global ms_prompt
 ms_prompt = "empty"
@@ -55,8 +56,14 @@ def do_test(input_str):
     global OK
     global KO
 
+    dir = './outfiles'
+    if os.path.exists(dir):
+        shutil.rmtree(dir)
+    os.makedirs(dir)
     error = 0
     bash_stdout, bash_stderr, bash_exitcode = run_bash(input_str)
+    if (os.path.exists(dir + "/outfile")):
+        os.rename(dir + "/outfile", dir + "/bash_out")
     ms_stdout, ms_stderr, ms_exitcode = run_minishell(input_str)
     if (bash_stdout != ms_stdout):
         error = 1
@@ -69,6 +76,10 @@ def do_test(input_str):
     if (bash_exitcode != ms_exitcode):
         error = 1
         print("EXITCODE: bash: " + str(bash_exitcode) + "ms: " + str(ms_exitcode))
+    if (os.path.exists(dir + "/bash_out")):
+        if not (filecmp.cmp(dir + "/bash_out", dir + "/outfile", shallow=False)):
+            error = 1
+            print("OUTFILES DIFFER")
     if (error == 1):
         KO += 1
         print("ERROR [" + str(COUNTER) + "]: " + repr(input_str))

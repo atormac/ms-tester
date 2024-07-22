@@ -29,5 +29,5 @@ export VARIABLE=value123
 export 8VARIABLE=value
 unset HOME
 unset PWD
-ls -la > outfile1
-ls -la | grep ":" > outfile1 | wc
+ls -a > ./outfiles/outfile
+ls -a | grep ":" > ./outfiles/outfile | wc
