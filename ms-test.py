@@ -11,6 +11,10 @@ VALGRIND = 0
 OK = 0
 KO = 0
 
+valgrind_cmd = ["valgrind", "--tool=memcheck", "--leak-check=yes",
+"--trace-children=yes", "--trace-children-skip=/usr/bin/*,/bin/*",
+"--track-fds=yes", "-q", "./minishell"]
+
 def strip_prefix(s, p):
    return s.replace(p,'') if s.startswith(p) else s
 
@@ -36,9 +40,7 @@ def run_bash(input_str):
 def run_minishell(input_str):
     try:
         if (VALGRIND == 1):
-            cmd = ["valgrind", "--tool=memcheck", "--leak-check=yes",
-            "--trace-children=yes", "--trace-children-skip=/usr/bin/*,/bin/*",
-            "--track-fds=yes", "-q", "./minishell"]
+            cmd = valgrind_cmd
             timeout_seconds = 30
         else:
             cmd = ["./minishell"]
@@ -98,6 +100,7 @@ def init_tester():
     if (len(sys.argv) == 2 and sys.argv[1] == "valgrind"):
         VALGRIND = 1
         print("VALGRIND ENABLED")
+        print(*valgrind_cmd)
 
 def get_prompt():
     stdout, stderr, ret = run_minishell("exit\n")
