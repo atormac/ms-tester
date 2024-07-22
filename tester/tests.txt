@@ -45,7 +45,10 @@ export VARIABLE=value123
 export 8VARIABLE=value
 unset HOME
 unset PWD
+cat <./infile/f1|ls
+cat <./infile/f1>../outfiles/outfile
 ls -a > ../outfiles/outfile
+ls -la > ./infiles/noaccess
 ls -la | grep ":" > ../outfiles/outfile | wc
 ls -la >> ../outfiles/outfile | ls >> ../outfiles/outfile
 cat < ./infiles/f1 >> ../outfiles/outfile | ls >> ../outfiles/outfile
