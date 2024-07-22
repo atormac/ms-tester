@@ -81,6 +81,7 @@ def init_tester():
     global COUNTER
     global VALGRIND
     shutil.copyfile("../minishell", "./minishell")
+    os.chmod("./minishell", 755)
     if (len(sys.argv) == 2 and sys.argv[1] == "valgrind"):
         VALGRIND = 1
         print("VALGRIND ENABLED")
