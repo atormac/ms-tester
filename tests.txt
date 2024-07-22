@@ -14,6 +14,7 @@ cd tmp/
 not_existing_cmd
 
  
+cat -e < ./infiles/f1 | grep "Lorem" | cat
 "    "
 ls
 ls | wc -l
