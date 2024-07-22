@@ -101,10 +101,12 @@ def do_test(input_str):
 
     bash_stdout, bash_stderr, bash_exitcode = run_bash(input_str)
     bash_stderr = bash_stderr.split('\n')[0]
+    bash_stderr = bash_stderr.lstrip()
     if (os.path.exists(dir + "/outfile")):
         os.rename(dir + "/outfile", dir + "/bash_out")
     ms_stdout, ms_stderr, ms_exitcode = run_minishell(input_str)
-    ms_stderr = ms_stderr.partition('\n')[0]
+    ms_stderr = ms_stderr.split('\n')[0]
+    ms_stderr = ms_stderr.lstrip()
     if (bash_stdout != ms_stdout or bash_stderr != ms_stderr or bash_exitcode != ms_exitcode):
         error = 1
     if (os.path.exists(dir + "/bash_out")):
