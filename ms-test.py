@@ -55,38 +55,45 @@ def run_minishell(input_str):
         print("Error occured: ", e)
     return ms_stdout, ms_stderr, ms_exitcode
 
+def print_error_info(type_str, bash_str, ms_str):
+    print("--- " + type_str + " ---")
+    print("BASH: " + bash_str)
+    print("MINISHELL: " + ms_str)
+    print("------------------------")
+
 def do_test(input_str):
     global COUNTER
     global OK
     global KO
 
+    error = 0
+    error_outfile = 0
     dir = './outfiles'
     if os.path.exists(dir):
         shutil.rmtree(dir)
     os.makedirs(dir)
-    error = 0
+
     bash_stdout, bash_stderr, bash_exitcode = run_bash(input_str)
     if (os.path.exists(dir + "/outfile")):
         os.rename(dir + "/outfile", dir + "/bash_out")
     ms_stdout, ms_stderr, ms_exitcode = run_minishell(input_str)
-    if (bash_stdout != ms_stdout):
+    if (bash_stdout != ms_stdout or bash_stderr != ms_stderr or bash_exitcode != ms_exitcode):
         error = 1
-        print("STDOUT:")
-    if (bash_stderr != ms_stderr):
-        error = 1
-        print("STDERR:")
-        print("bash: " + bash_stderr)
-        print("ms: " + ms_stderr)
-    if (bash_exitcode != ms_exitcode):
-        error = 1
-        print("EXITCODE: bash: " + str(bash_exitcode) + "ms: " + str(ms_exitcode))
     if (os.path.exists(dir + "/bash_out")):
         if not (filecmp.cmp(dir + "/bash_out", dir + "/outfile", shallow=False)):
             error = 1
-            print("OUTFILES DIFFER")
+            error_outfile = 1
     if (error == 1):
         KO += 1
         print("ERROR [" + str(COUNTER) + "]: " + repr(input_str))
+        if (bash_stdout != ms_stdout):
+            print_error_info("STDOUT", bash_stdout, ms_stdout);
+        if (bash_stderr != ms_stderr):
+            print_error_info("STDERR", bash_stderr, ms_stderr);
+        if (bash_exitcode != ms_exitcode):
+            print_error_info("EXITCODE", str(bash_exitcode), str(ms_exitcode));
+        if (error_outfile == 1):
+            print("OUTFILE")
     else:
         OK += 1
         print("OK [" + str(COUNTER) + "]: " + repr(input_str))
