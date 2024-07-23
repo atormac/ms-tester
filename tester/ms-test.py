@@ -138,6 +138,8 @@ def run_tests_complex(testfile):
             data = file.read()
             b_stdout, b_stderr, b_exit = run_bash(data)
             ms_stdout, ms_stderr, ms_exit = run_minishell(data)
+            if (testfile == "heredoc.txt"):
+                ms_stdout = ms_stdout.split(">EOF\n")[1]
             error = 0
             if (b_stdout != ms_stdout or b_stderr != ms_stderr):
                 error = 1
@@ -162,5 +164,6 @@ ms_prompt = get_prompt()
 run_tests_single()
 run_tests_complex("complex.txt")
 run_tests_complex("pwd.txt")
+run_tests_complex("heredoc.txt")
 print("\n--- SUMMARY ---")
 print("TOTAL:\t" + str(COUNTER) + "\tOK:\t" + str(OK) + "\tERROR:\t" + str(KO))
