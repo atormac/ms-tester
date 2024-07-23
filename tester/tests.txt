@@ -47,6 +47,8 @@ unset HOME
 unset PWD
 cat <./infile/f1|ls
 cat <./infile/f1>../outfiles/outfile
+ls > $OUTFILE
+ls >> $OUTFILE
 ls -a > ../outfiles/outfile
 ls -la > ./infiles/noaccess
 ls -la | grep ":" > ../outfiles/outfile | wc
