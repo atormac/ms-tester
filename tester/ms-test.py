@@ -131,10 +131,10 @@ def init_tester():
         print(*valgrind_cmd)
 
 
-def run_tests_complex():
-    print("--- COMPLEX ---")
+def run_tests_complex(testfile):
+    print("--- " + testfile + "---")
     try:
-        with open('complex.txt', 'r') as file:
+        with open(testfile, 'r') as file:
             data = file.read()
             b_stdout, b_stderr, b_exit = run_bash(data)
             ms_stdout, ms_stderr, ms_exit = run_minishell(data)
@@ -142,7 +142,7 @@ def run_tests_complex():
             if (b_stdout != ms_stdout or b_stderr != ms_stderr):
                 error = 1
             
-            print_test_result("complex.txt", error, 0, b_stdout, b_stderr, b_exit,
+            print_test_result(testfile, error, 0, b_stdout, b_stderr, b_exit,
                     ms_stdout, ms_stderr, ms_exit)
     except Exception as e:
         print("Error occured: ", e)
@@ -160,6 +160,7 @@ def run_tests_single():
 init_tester()
 ms_prompt = get_prompt()
 run_tests_single()
-run_tests_complex()
+run_tests_complex("complex.txt")
+run_tests_complex("pwd.txt")
 print("\n--- SUMMARY ---")
 print("TOTAL:\t" + str(COUNTER) + "\tOK:\t" + str(OK) + "\tERROR:\t" + str(KO))

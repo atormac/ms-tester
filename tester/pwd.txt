@@ -1,0 +1,7 @@
+env | grep PWD
+cd ..
+env | grep PWD
+unset PWD
+cd ..
+env | grep PWD
+exit
