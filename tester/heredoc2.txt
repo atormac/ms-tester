@@ -1,0 +1,5 @@
+cat << "EOF"
+$HOME
+str2
+EOF
+exit
