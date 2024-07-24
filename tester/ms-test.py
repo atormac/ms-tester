@@ -141,7 +141,7 @@ def run_tests_complex(testfile):
             if (testfile == "heredoc.txt"):
                 ms_stdout = ms_stdout.split(">EOF\n")[1]
             error = 0
-            if (b_stdout != ms_stdout or b_stderr != ms_stderr):
+            if (b_stdout != ms_stdout or b_stderr != ms_stderr or b_exit != ms_exit):
                 error = 1
             
             print_test_result(testfile, error, 0, b_stdout, b_stderr, b_exit,
