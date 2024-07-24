@@ -3,6 +3,8 @@ exit
 exit 17
 exit 72860
 exit invalid
+exit | cat
+ls | exit
 echo abc 123
 echo -n
 echo $HOME

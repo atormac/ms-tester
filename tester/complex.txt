@@ -1,6 +1,8 @@
 export NEWKEYVAL=VALUE15682
 echo $?
 env | grep "NEWKEYVAL"
+export _1__ABC=ABC
+env | grep ABC
 export EMPTYKEY
 echo $?
 env | grep EMPTYKEY
