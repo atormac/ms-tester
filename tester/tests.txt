@@ -2,6 +2,11 @@ pwd
 exit
 exit 17
 exit 72860
+exit 21474336489
+exit 9223372036854775807
+exit 9223372036854775808
+exit -9223372036854775808
+exit -9223372036854775809
 exit invalid
 exit | cat
 exit > ../outfiles/outfile
