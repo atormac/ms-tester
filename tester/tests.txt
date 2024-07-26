@@ -4,6 +4,7 @@ exit 17
 exit 72860
 exit invalid
 exit | cat
+exit > ../outfiles/outfile
 ls | exit
 echo abc 123
 echo -n
