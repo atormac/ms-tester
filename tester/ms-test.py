@@ -37,8 +37,8 @@ def run_bash(input_str):
         bash_exitcode = b.returncode
         bash_stdout = stdout.decode().rstrip()
         bash_stderr = stderr.decode().rstrip()
-        bash_stderr = strip_prefix(stderr.decode().rstrip(), "bash: line 1: ")
-        for x in range(line_count):
+        bash_stderr = stderr.decode().rstrip()
+        for x in range(line_count + 1):
             bash_stderr = bash_stderr.replace("bash: line " + str(x) + ": ", "")
             bash_stderr = bash_stderr.replace("line " + str(x) + ": ", "")
             bash_stderr = strip_prefix(bash_stderr, "bash: ")
@@ -65,9 +65,9 @@ def run_minishell(input_str):
     return ms_stdout, ms_stderr, ms_exitcode
 
 def print_error_info(type_str, bash_str, ms_str):
-    print("--- " + type_str + " ---")
-    print("BASH: " + bash_str)
-    print("MINISHELL: " + ms_str)
+    print("--- ERROR: " + type_str + " ---")
+    print("--- BASH: ---\n" + bash_str)
+    print("--- MINISHELL: ---\n" + ms_str)
     print("------------------------")
 
 def print_test_result(input_str, error, error_outfile, b_out, b_err, b_exit, ms_out, ms_err, ms_exit):
@@ -162,8 +162,10 @@ def run_tests_single():
 init_tester()
 ms_prompt = get_prompt()
 run_tests_single()
-run_tests_complex("complex.txt")
+run_tests_complex("env.txt")
 run_tests_complex("pwd.txt")
+run_tests_complex("path.txt")
+run_tests_complex("cd.txt")
 run_tests_complex("heredoc.txt")
 run_tests_complex("heredoc2.txt")
 print("\n--- SUMMARY ---")

@@ -30,6 +30,16 @@ echo hello > ../outfiles/outfile2 world > ../outfiles/outfile
 echo hello > ../outfiles/outfile2 world > ../outfiles/outfile1 abc123 > ../outfiles/outfile
 cd non_existent_directory
 cd tmp/
+cd .
+cd ..
+cd ""
+cd
+cd asfk 84 kasdf
+cd ../../../../../../../../../../../
+unset PATH
+unset HOME
+unset PWD
+unset NOTEXISTS123
 ./not_exists_123
 not_existing_cmd
 ls
@@ -48,7 +58,7 @@ echo "hello" | grep "hello"
 echo "world" | grep "hello"
 ls -la | grep "^d" | wc -l
 echo "hello" | cat | grep "hello"
-ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls
+ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls
 export VARIABLE=value123
 export 8VARIABLE=value
 unset HOME
