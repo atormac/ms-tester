@@ -120,6 +120,7 @@ def do_test(input_str):
 def init_tester():
     global COUNTER
     global VALGRIND
+    os.chdir("tester/")
     shutil.copyfile("../../minishell", "./minishell")
     os.chmod("./minishell", 0o0755)
     if not os.path.exists("./infiles/noaccess"):
