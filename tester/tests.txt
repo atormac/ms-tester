@@ -48,7 +48,6 @@ ls
 < >
 << < << < 
 
- 
 cat -e < ./infiles/f1 | grep "Lorem" | cat
 "    "
 ls | "" | "  " | " " > ""
