@@ -5,7 +5,7 @@ import sys
 import filecmp
 
 global ms_prompt
-ms_prompt = "empty"
+ms_prompt = "@minishell:"
 COUNTER = 0
 VALGRIND = 0
 OK = 0
@@ -25,7 +25,7 @@ def get_prompt():
 def get_ms_output(s):
     global ms_prompt
     lines = s.splitlines()
-    filtered = [line for line in lines if not line.startswith(ms_prompt)]
+    filtered = [line for line in lines if not ms_prompt in line]
     return '\n'.join(filtered)
 
 def run_bash(input_str):
@@ -160,7 +160,6 @@ def run_tests_single():
         print("Error occured: ", e)
 
 init_tester()
-ms_prompt = get_prompt()
 run_tests_single()
 run_tests_complex("env.txt")
 run_tests_complex("pwd.txt")
